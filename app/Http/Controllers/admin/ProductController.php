@@ -23,7 +23,7 @@ class ProductController extends Controller
     private Product $models;
     public function __construct()
     {
-        $this->models=new Product();
+        $this->models = new Product();
     }
 
     /**
@@ -31,15 +31,17 @@ class ProductController extends Controller
      */
     public function index(): Factory|View|Application
     {
-        $product = $this->models->paginate();
+        $product =  $this->models->addSelect('products.*')
+        ->join('brands', 'brands.id', 'products.brand_id')
+        ->join('categories', 'categories.id', 'products.category_id')
+        ->addSelect('categories.name as categoryname')
+        ->addSelect('brands.name as brandname')
+        ->paginate();
 
-        $query = $this->models->addSelect('products.*')
-            ->addSelect('categories.name')
-            ->join('categories','categories.id','products.id');
-        // dd($query);
-        return view('admin.product.product',[
-            'product'=>$product,
-            'query'=>$query,
+        
+        // dd($this->models->addSelect('products.*')->get());
+        return view('admin.product.product', [
+            'product' => $product,
         ]);
     }
 
@@ -82,8 +84,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.product.edit',[
-            'data'=>$product,
+        return view('admin.product.edit', [
+            'data' => $product,
         ]);
     }
 
@@ -94,8 +96,8 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $product)
     {
         $obj =  $this->models->find($product);
-        $obj -> fill($request->except('_token'));
-        $obj -> save();
+        $obj->fill($request->except('_token'));
+        $obj->save();
 
         return redirect(route('quan-tri.product.index'));
     }
@@ -107,10 +109,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-//        $this->models->query()->where('id', $product)->delete();
-//        $this->models->find($product)->delete();
+        // dd($product);
+        //        $this->models->query()->where('id', $product)->delete();
+        //        $this->models->find($product)->delete();
         $product->delete();
         return redirect(route('quan-tri.product.index'));
-
     }
 }

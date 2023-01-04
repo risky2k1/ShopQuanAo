@@ -1,6 +1,14 @@
 @extends('admin.master')
 
 @section('content')
+<style>
+    .buttoms{
+        display: flex;
+    }
+    .buttoms > form{
+        margin-right: 5px;
+    }
+</style>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -27,38 +35,38 @@
                                         <th class="text-right">Actions</th>
                                     </tr>
                                     </thead>
-
-                                    @foreach ($product as $key=>$pro)
                                         <tbody>
-                                        <tr>
+                                    @foreach ($product as $key=>$pro)
+                                       
+                                        <tr> 
+                                            <form></form>
                                             <td class="text-center">{{$key+1}}</td>
                                             <td><img src="{{$pro->intro_img}}" alt=""
                                                      style="height: 100px;width: 100px"></td>
                                             <td>{{$pro->name}}</td>
-                                            <td>category</td>
-                                            <td>brand</td>
+                                            <td>{{$pro->categoryname}}</td>
+                                            <td>{{$pro->brandname}}</td>
                                             <td >{{$pro->sellPrice}}</td>
                                             <td >{{$pro->importPrice}}</td>
-                                            <td>
+                                            <td class="buttoms">
                                                 <a href="{{route('quan-tri.product.edit',$pro)}}">
-                                                    <button type="button" rel="tooltip" class="btn btn-success"
-                                                            data-original-title="" title="">
+                                                    <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
                                                         <i class="fa fa-check"></i>
                                                     </button>
                                                 </a>
-                                                <form action="{{route('quan-tri.product.destroy',$pro)}}" method="post">
+                                              
+                                                <form action="{{route('quan-tri.product.destroy',$pro)}}" method="post" class="">
                                                     @method('delete')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">
-                                                        <i
-                                                            class="fa fa-trash"></i>
+                                                        <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
                                             </td>
                                         </tr>
-                                        </tbody>
+                                       
                                     @endforeach
-
+                                        </tbody>
 
                                 </table>
                             </div>
