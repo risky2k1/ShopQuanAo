@@ -89,6 +89,18 @@
                         <p> Sản phẩm </p>
                     </a>
                 </li>
+                <li class="active">
+                    <a href="{{route('quan-tri.category.index')}}">
+                        <i class="material-icons">list</i>
+                        <p> Danh mục </p>
+                    </a>
+                </li>
+                <li class="active">
+{{--                    <a href="{{route('quan-tri.brand.index')}}">--}}
+                        <i class="material-icons">list</i>
+                        <p> Nhãn hàng </p>
+{{--                    </a>--}}
+                </li>
             </ul>
         </div>
     </div>

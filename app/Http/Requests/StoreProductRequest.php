@@ -24,44 +24,52 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>[
+            'name' => [
                 'bail', //Thông báo ngay khi gặp lỗi
                 'required', //Ko để trống
                 'string', //Là 1 string
 //                'unique:App\Models\Course,name', // Là duy nhất
             ],
-            'sellPrice'=>[
+            'sellPrice' => [
                 'required',
                 'numeric',
             ],
-            'importPrice'=>[
+            'importPrice' => [
                 'required',
                 'numeric'
             ],
-            'quantity'=>[
+            'quantity' => [
                 'required',
                 'numeric',
             ],
-            'description'=>[
+            'description' => [
                 'required',
                 'string',
             ],
-            'intro_img'=>[
+            'intro_img' => [
                 'string',
             ]
         ];
     }
+
     public function messages()
     {
         return [
-            'required' => ':attribute Can not be blank',
-
+            'required' => ':attribute Không được để trống',
+            'string' => ':attribute là một chuỗi kí tự',
+            'numeric' => ':attribute Phải là số'
         ];
     }
+
     public function attributes()
     {
         return [
-            'name'=>'Ho ten',
+            'name' => 'Tên sản phẩm',
+            'sellPrice' => 'Giá bán sản phẩm',
+            'importPrice' => 'Giá nhập sản phẩm',
+            'description' => 'Mô tả sản phẩm',
+            'quantity' => 'Số lượng sản phẩm',
+
         ];
     }
 }

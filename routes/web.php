@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ShopController;
+use App\Http\Controllers\Shop\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,20 +23,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
 
-
-Route::get('/home', [HomeController::class, 'index'])->name('index');
-
+Route::group(
+    [
+        'prefix' => 'home',
+        'as' => 'home.'
+    ],
+    static function () {
+        Route::get('/', [HomeController::class, 'home'])->name('home');
+    }
+);
 Route::group(
     [
         'prefix' => 'shop',
         'as' => 'shop.'
     ],
     static function () {
-        Route::get('/', [ShopController::class, 'index'])->name('index');
+        Route::get('/', [HomeController::class, 'home'])->name('home');
     }
 );
-Auth::routes();
+
 Route::group(
     [
         'prefix' => 'quan-tri',
@@ -44,6 +52,9 @@ Route::group(
     static function () {
         Route::get('/index', [AdminController::class, 'index'])->name('index');
         Route::resource('product', ProductController::class );
+        Route::resource('category', CategoryController::class );
+        Route::resource('brand', BrandController::class );
+
     }
 );
 

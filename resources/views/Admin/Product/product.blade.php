@@ -1,11 +1,11 @@
-@extends('admin.master')
+@extends('admin.layout.master')
 
 @section('content')
 <style>
-    .buttoms{
+    .buttons{
         display: flex;
     }
-    .buttoms > form{
+    .buttons > form{
         margin-right: 5px;
     }
 </style>
@@ -17,8 +17,9 @@
                         <i class="material-icons">assignment</i>
                     </div>
                     <form action="" class="form-group">
-                        <a href="{{route('quan-tri.product.create')}}" class="form-control btn btn-primary"
-                           style="color:black;background: #E91E63;">Thêm</a>
+                        <a href="{{route('quan-tri.product.create')}}" class="form-control btn btn-primary" style="color:black;background: #E91E63;">
+                            Thêm mới sản phẩm
+                        </a>
                         <div class="card-content">
                             <h4 class="card-title">Simple Table</h4>
                             <div class="table-responsive">
@@ -27,34 +28,34 @@
                                     <tr>
                                         <th class="text-center">#</th>
                                         <th>Ảnh</th>
-                                        <th>Name</th>
-                                        <th>Danh muc</th>
-                                        <th>Nhan hang</th>
-                                        <th class="text-right">Gia ban</th>
-                                        <th class="text-right">Gia nhap</th>
-                                        <th class="text-right">Actions</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Danh mục</th>
+                                        <th>Nhãn hàng</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá bán</th>
+                                        <th>Giá nhập</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                     </thead>
                                         <tbody>
                                     @foreach ($product as $key=>$pro)
-                                       
-                                        <tr> 
+                                        <tr>
                                             <form></form>
                                             <td class="text-center">{{$key+1}}</td>
-                                            <td><img src="{{$pro->intro_img}}" alt=""
-                                                     style="height: 100px;width: 100px"></td>
+                                            <td><img src="{{$pro->intro_img}}" alt="" style="height: 100px;width: 100px"></td>
                                             <td>{{$pro->name}}</td>
                                             <td>{{$pro->categoryname}}</td>
                                             <td>{{$pro->brandname}}</td>
-                                            <td >{{$pro->sellPrice}}</td>
-                                            <td >{{$pro->importPrice}}</td>
-                                            <td class="buttoms">
+                                            <td>{{$pro->quantity}}</td>
+                                            <td>{{$pro->sellPrice}}</td>
+                                            <td>{{$pro->importPrice}}</td>
+                                            <td class="buttons">
                                                 <a href="{{route('quan-tri.product.edit',$pro)}}">
                                                     <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
                                                         <i class="fa fa-check"></i>
                                                     </button>
                                                 </a>
-                                              
+
                                                 <form action="{{route('quan-tri.product.destroy',$pro)}}" method="post" class="">
                                                     @method('delete')
                                                     @csrf
@@ -64,7 +65,7 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                       
+
                                     @endforeach
                                         </tbody>
 

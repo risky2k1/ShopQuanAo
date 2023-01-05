@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.layout.master')
 @section('content')
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -36,6 +36,9 @@
         <input type="text" name="intro_img" class="form-control">
         <br>
         Phan loai san pham:
+        <select name="category">
+            <option value=""></option>
+        </select>
         <br>
         <button class="btn btn-success">Thêm mới sản phẩm</button>
 
