@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Shop\HomeController;
+use App\Http\Controllers\Shop\ShopController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +41,7 @@ Route::group(
         'as' => 'shop.'
     ],
     static function () {
-        Route::get('/', [HomeController::class, 'home'])->name('home');
+        Route::get('/', [ShopController::class, 'index'])->name('index');
     }
 );
 

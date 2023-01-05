@@ -13,7 +13,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $models;
+    private Product $models;
     public function __construct()
     {
         $this->models=new Product();
