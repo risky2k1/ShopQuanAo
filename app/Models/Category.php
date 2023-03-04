@@ -14,12 +14,13 @@ class Category extends Model
         'name',
     ];
 
-    public function productz(): HasMany
-    {
-        return $this->hasMany(Product::class);
-    }
+//    public function productz(): HasMany
+//    {
+//        return $this->hasMany(Product::class);
+//    }
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Category::class,'parent_id','id');
     }
+
 }

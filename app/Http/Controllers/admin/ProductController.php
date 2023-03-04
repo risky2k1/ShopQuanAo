@@ -5,13 +5,18 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -27,18 +32,22 @@ class ProductController extends Controller
         $this->models = new Product();
     }
 
-    /**
-     * @return Factory|View|Application
-     */
-    public function index(): Factory|View|Application
+
+    public function index()
     {
         $product = $this->models
             ->addSelect('products.*')
-            ->join('brands', 'brands.id', 'products.brand_id')
             ->join('categories', 'categories.id', 'products.category_id')
+            ->join('brands', 'brands.id', 'products.brand_id')
             ->addSelect('categories.name as categoryname')
             ->addSelect('brands.name as brandname')
             ->paginate();
+//        $product = DB::table('products')
+//            ->select('categories.name as categoryname')
+//            ->join('categories', 'products.category_id', '=', 'categories.id')
+//            ->select('brands.name as brandname')
+//            ->join('brands', 'products.brand_id', '=', 'brands.id')
+//            ->get();
 
         return view('admin.product.product', [
             'product' => $product,
@@ -51,7 +60,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $category = Category::all()->toArray();
+        $brand = Brand::all()->toArray();
+
+        return view('admin.product.create',[
+            'category'=>$category,
+            'brand'=>$brand,
+        ]);
     }
 
     /**
@@ -59,10 +74,12 @@ class ProductController extends Controller
      *
      * @return RedirectResponse
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request )
     {
-        $this->models::create($request->validated());
-
+        $path = Storage::disk('public')->putFile('avatar',$request->file('img'));
+        $arr = $request->validated();
+        $arr['img'] = $path;
+        $this->models->create($arr);
         return redirect()->route('quan-tri.product.index');
     }
 
@@ -98,7 +115,6 @@ class ProductController extends Controller
         $obj = $this->models->find($product);
         $obj->fill($request->except('_token'));
         $obj->save();
-
         return redirect(route('quan-tri.product.index'));
     }
 

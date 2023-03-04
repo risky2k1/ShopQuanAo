@@ -6,11 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "bensampo/laravel-enum": "^6.3",
+        "bumbummen99/shoppingcart": "^4.2",
+        "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
+        "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.1"
+        "laravel/ui": "^4.1",
+        "spatie/laravel-permission": "^5.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

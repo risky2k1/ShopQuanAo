@@ -15,12 +15,19 @@ class Product extends Model
         'quantity',
         'importPrice',
         'sellPrice',
-        'brand',
         'description',
+        'category_id',
+        'brand_id',
         'intro_img',
+        'img',
+
     ];
     public function categoryz(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+    public function image()
+    {
+        return $this->hasMany(Image::class,'product_id','id');
     }
 }

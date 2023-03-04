@@ -48,7 +48,15 @@ class StoreProductRequest extends FormRequest
             ],
             'intro_img' => [
                 'string',
-            ]
+            ],
+            'img' => [
+                'nullable',
+            ],
+            'category_id' => [
+                'required',
+            ],'brand_id' => [
+                'required',
+            ],
         ];
     }
 

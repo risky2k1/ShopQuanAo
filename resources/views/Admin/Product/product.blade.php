@@ -42,13 +42,17 @@
                                         <tr>
                                             <form></form>
                                             <td class="text-center">{{$key+1}}</td>
-                                            <td><img src="{{$pro->intro_img}}" alt="" style="height: 100px;width: 100px"></td>
+                                            <td>
+{{--                                                <img src="{{asset(count($pro->image)>0?'storage/'.$pro->image{0}['name']:'')}}" alt="" style="height: 100px;width: 100px">--}}
+                                                <img src="{{asset('storage/'.$pro->img)}}" alt="" style="height: 100px;width: 100px">
+
+                                            </td>
                                             <td>{{$pro->name}}</td>
                                             <td>{{$pro->categoryname}}</td>
                                             <td>{{$pro->brandname}}</td>
                                             <td>{{$pro->quantity}}</td>
-                                            <td>{{$pro->sellPrice}}</td>
-                                            <td>{{$pro->importPrice}}</td>
+                                            <td>{{number_format($pro->sellPrice).' đ'}}</td>
+                                            <td>{{number_format($pro->importPrice).' đ'}}</td>
                                             <td class="buttons">
                                                 <a href="{{route('quan-tri.product.edit',$pro)}}">
                                                     <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">

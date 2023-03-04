@@ -96,6 +96,19 @@
                     </a>
                 </li>
                 <li class="active">
+                    <a href="{{route('quan-tri.category.index')}}">
+                        <i class="material-icons">list</i>
+                        <p> Hóa đơn </p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{{route('quan-tri.user')}}">
+                        <i class="material-icons">list</i>
+                        <p> Người dùng </p>
+                    </a>
+                </li>
+
+                <li class="disable">
 {{--                    <a href="{{route('quan-tri.brand.index')}}">--}}
                         <i class="material-icons">list</i>
                         <p> Nhãn hàng </p>
@@ -228,10 +241,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 <!-- Library for adding dinamically elements -->
 <script src={{asset('admin/js/arrive.min.js')}} type="text/javascript"></script>
-<!-- Forms Validations Plugin -->
-<script src={{asset('admin/js/jquery.validate.min.js')}}></script>
-<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-<script src={{asset('admin/js/moment.min.js')}}></script>
+
+
 <!--  Charts Plugin, full documentation here: https://gionkunz.github.io/chartist-js/ -->
 <script src={{asset('admin/js/chartist.min.js')}}></script>
 <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
@@ -240,8 +251,7 @@
 <script src={{asset('admin/js/bootstrap-notify.js')}}></script>
 <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
 <script src={{asset('admin/js/bootstrap-datetimepicker.js')}}></script>
-<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-<script src={{asset('admin/js/jquery-jvectormap.js')}}></script>
+
 <!-- Sliders Plugin, full documentation here: https://refreshless.com/nouislider/ -->
 <script src={{asset('admin/js/nouislider.min.js')}}></script>
 <!--  Google Maps Plugin    -->

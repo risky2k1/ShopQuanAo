@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.layout.master')
 @section('content')
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -9,7 +9,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{route('quan-tri.product.update',$data)}}" class="form-group" method="post">
+    <form action="{{route('quan-tri.product.update',$data)}}" class="form-group" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
         Tên sản phẩm:
